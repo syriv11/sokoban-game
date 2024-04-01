@@ -18,7 +18,7 @@ namespace Sokoban
             {
                 Instance = this as T;
             }
-            else if (Instance == this)
+            else if (Instance != this)
             {
                 Destroy(gameObject);
             }

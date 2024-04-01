@@ -1,53 +1,86 @@
 using System;
+using System.Collections.Generic;
+using System.Reflection;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 namespace Sokoban
 {
-    //public enum MoveDirection
-    //{
-    //    Up, Down, Left, Right
-    //}
-
     public class PlayerInputManager : MonoBehaviour
     {
-        public Action<Vector3> MovePressed;
-        [HideInInspector] public Vector3 InputWASD;
+        public Action<Vector2> MovePressed;
 
-        private Vector3 _moveDirection;
-        public Vector3 MoveDirection => _moveDirection;
+        private Vector2 _moveDirection = Vector2.zero;
+        private Vector2 _lastMoveDirection;
+
+        private bool _isKeyPressedFirstTime = false;
+
+        public Vector2 MoveDirection => _moveDirection;
+        public SwipeController SwipeController { get; private set; }
+
+        private void Start()
+        {
+            SwipeController = GetComponent<SwipeController>();
+            SwipeController.SwipePerformed += OnSwipePerformed;
+        }
+
+        private void OnSwipePerformed(SwipeDirection swipeDirection)
+        {
+            //Debug.Log($"SwipeDirection: {swipeDirection}");
+
+            switch (swipeDirection)
+            {
+                case SwipeDirection.None:
+                    return;
+
+                case SwipeDirection.Up:
+                    _moveDirection = new Vector2(0f, 1f);
+                    break;
+                case SwipeDirection.Down:
+                    _moveDirection = new Vector2(0f, -1f);
+                    break;
+                case SwipeDirection.Left:
+                    _moveDirection = new Vector2(-1f, 0f);
+                    break;
+                case SwipeDirection.Right:
+                    _moveDirection = new Vector2(1f, 0f);
+                    break;
+            }
+
+            MovePressed?.Invoke(MoveDirection);
+        }
 
         private void Update()
         {
-            GetPlayerInput();
+            SwipeController.HandleSwipes();
+            //GetPlayerkeyboardInput();
         }
 
-        private void GetPlayerInput()
-        {
-            // Movement
-            InputWASD = new Vector3(
-                Input.GetAxis("Horizontal"),
-                0f,
-                Input.GetAxis("Vertical")
-            );
+        //private void GetPlayerkeyboardInput()
+        //{
+        //    // Movement
 
-            //Vector3 moveDirection = new Vector3
-            //    (
-            //        Input.GetKey(KeyCode.W)
-            //    );
+        //    _lastMoveDirection = _moveDirection;
 
-            
+        //    _moveDirection = new Vector2
+        //    (
+        //        Input.GetAxisRaw("Horizontal"), 
+        //        Input.GetAxisRaw("Vertical")
+        //    );
 
-            if (Input.GetKey(KeyCode.W))
-            {
-                _moveDirection.x = 1f;
-            }
+        //    if ((_lastMoveDirection != _moveDirection))
+        //    {
+        //        _isKeyPressedFirstTime = true;
+        //    }
+        //    else
+        //    {
+        //        _isKeyPressedFirstTime = false;
+        //    }
 
-            if (Input.GetKey(KeyCode.S))
-            {
-                _moveDirection.x = -1f;
-            }
-
-            MovePressed.Invoke(MoveDirection);
-        }
+        //    if (_moveDirection != Vector2.zero)
+        //    {
+        //        MovePressed?.Invoke(MoveDirection, _isKeyPressedFirstTime);
+        //    }
+        //}
     }
 }
