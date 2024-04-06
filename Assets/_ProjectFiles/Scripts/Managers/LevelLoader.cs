@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,10 +20,16 @@ namespace Sokoban
 
         private const string TRANSITION_SPEED_MULTIPLIER = "SpeedMultiplier";
 
+        private LevelProgressSaver _levelProgressSaver => ProjectContext.Instance.LevelProgressSaver;
+
         private void Start()
         {
             _transition.SetFloat(TRANSITION_SPEED_MULTIPLIER, 1 / _transitionTime);
+
+            _levelProgressSaver.UnlockLevel(_levelsNames?[0]);
         }
+
+        public List<string> GetAllLevelNames() => new List<string>(_levelsNames);
 
         public void LoadNextLevel()
         {
@@ -36,8 +43,13 @@ namespace Sokoban
             if (currentSceneIndex == _levelsNames.Count - 1)
                 BackToMenu();
             else
-                LoadLevel(currentSceneIndex + 1);
+            {
+                int nextLevelIndex = currentSceneIndex + 1;
+
+                _levelProgressSaver.UnlockLevel(_levelsNames[nextLevelIndex]);
+                LoadLevel(nextLevelIndex);
                 //LoadLevelByName(GetCurrentSceneIndex() + 1);
+            }
         }
 
         public void BackToMenu()
@@ -89,5 +101,17 @@ namespace Sokoban
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
+
+        //public List<Scene> GetAllLevelScenes()
+        //{
+        //    List<Scene> levelScenes = new List<Scene>();
+
+        //    foreach (string levelName in _levelsNames)
+        //    {
+        //        levelScenes.Append(SceneManager.GetSceneByName(levelName));
+        //    }
+
+        //    return new List<Scene>();
+        //}
     }
 }

@@ -217,6 +217,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6928957708401440521, guid: e684abcdf059b744fa60321c6104263d,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8185335077470592817}
+    - target: {fileID: 6928957708401440521, guid: e684abcdf059b744fa60321c6104263d,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -224,6 +229,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928957708401440521, guid: e684abcdf059b744fa60321c6104263d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Toggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928957708401440521, guid: e684abcdf059b744fa60321c6104263d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Sokoban.ToggleButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928957708401440521, guid: e684abcdf059b744fa60321c6104263d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7035127987440814182, guid: e684abcdf059b744fa60321c6104263d,
         type: 3}
@@ -262,11 +282,42 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6824035431710833214}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5341408612837874210, guid: e684abcdf059b744fa60321c6104263d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8185335077470592817}
   m_SourcePrefab: {fileID: 100100000, guid: e684abcdf059b744fa60321c6104263d, type: 3}
 --- !u!224 &1113124034490742037 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6559529237059941727, guid: e684abcdf059b744fa60321c6104263d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6087386200551325770}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2187275705666230888 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5341408612837874210, guid: e684abcdf059b744fa60321c6104263d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6087386200551325770}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8185335077470592817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2187275705666230888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c944f9c2a015cda4487f228811f602a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _iconOn: {fileID: 2441939789164619447}
+  _iconOff: {fileID: 283625802824364300}
+  _initialState: 1
+--- !u!1 &2441939789164619447 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8473872566370871037, guid: e684abcdf059b744fa60321c6104263d,
     type: 3}
   m_PrefabInstance: {fileID: 6087386200551325770}
   m_PrefabAsset: {fileID: 0}

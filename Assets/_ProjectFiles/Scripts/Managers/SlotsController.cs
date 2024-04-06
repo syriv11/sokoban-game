@@ -8,7 +8,7 @@ namespace Sokoban
 {
     public class SlotsController : MonoBehaviour
     {
-        //public Action AllSlotsAreFilled;
+        public Action AllSlotsAreFilled;
 
         private List<Slot> _slots = new List<Slot>();
 
@@ -35,8 +35,7 @@ namespace Sokoban
             }
 
             Debug.Log("The level is complete");
-            //AllSlotsAreFilled?.Invoke();
-            _levelLoader.LoadNextLevel();
+            AllSlotsAreFilled?.Invoke();
         }
 
         private void OnLevelLoaded()
@@ -44,14 +43,21 @@ namespace Sokoban
             FindSlotsOnLevel();
         }
 
+        private void OnAllSlotsAreFilled()
+        {
+            _levelLoader.LoadNextLevel();
+        }
+
         private void OnEnable()
         {
             _levelLoader.LevelLoaded += OnLevelLoaded;
+            AllSlotsAreFilled += OnAllSlotsAreFilled;
         }
 
         private void OnDisable()
         {
             _levelLoader.LevelLoaded -= OnLevelLoaded;
+            AllSlotsAreFilled -= OnAllSlotsAreFilled;
         }
     }
 }

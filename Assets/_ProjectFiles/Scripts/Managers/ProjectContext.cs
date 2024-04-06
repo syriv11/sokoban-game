@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Sokoban
@@ -13,11 +11,14 @@ namespace Sokoban
 
         [Space]
 
+        [Header("Managers")]
         public GameManager GameManager;
         public PlayerInputManager PlayerInputManager;
         public SlotsController SlotsController;
         public LevelLoader LevelLoader;
+        public LevelProgressSaver LevelProgressSaver;
         public UiManager UiManager;
+        public VibrationsHandler VibrationsHandler;
 
         protected override void Awake()
         {

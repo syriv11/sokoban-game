@@ -9,6 +9,7 @@ namespace Sokoban
     {
         [Header("Properties")]
         //[SerializeField] private float _cellPerSecondSpeed;
+        [SerializeField] private bool _rotateTowardsMovementDirection;
 
         [Space]
         [Header("Gizmo Properties")]
@@ -21,6 +22,7 @@ namespace Sokoban
         private Vector3 _destinationRotation;
 
         private Vector3 _newPosition;
+        private Quaternion _newRotation;
 
         private void Start()
         {
@@ -28,6 +30,15 @@ namespace Sokoban
             //_cooldownMovement = new Cooldown(_cellPerSecondSpeed);
 
             _newPosition = _rigidbody.position;
+            _newRotation = transform.rotation;
+        }
+
+        private void Update()
+        {
+            _rigidbody.MovePosition(Vector3.Lerp(_newPosition, _rigidbody.position, 0.5f));
+
+            if (_rotateTowardsMovementDirection)
+                _rigidbody.MoveRotation(Quaternion.Lerp(_newRotation, _rigidbody.rotation, 0.5f));
         }
 
         public void Move(Vector2 direction2D)
@@ -43,10 +54,13 @@ namespace Sokoban
             //if (!isPressedFirstTime)
             //    return;
 
-            _newPosition = _rigidbody.position + GetDirection3D(direction2D).normalized;
+            _newPosition = _newPosition + GetDirection3D(direction2D).normalized;
 
-            _rigidbody.MovePosition(_newPosition);
-            RotateTowards(direction2D);
+            if (_rotateTowardsMovementDirection)
+            {
+                RotateTowards(direction2D);
+            }
+
 
             //Debug.Log($"\nDirection:    {direction2D}" +
             //          $"\nNew Position: {_newPosition}");
@@ -54,7 +68,7 @@ namespace Sokoban
 
         public void RotateTowards(Vector2 direction2D)
         {
-            _rigidbody.MoveRotation(Quaternion.LookRotation(GetDirection3D(direction2D).normalized));
+            _newRotation = Quaternion.LookRotation(GetDirection3D(direction2D).normalized);
         }
 
         private Vector3 GetDirection3D(Vector2 direction2D) => new Vector3(direction2D.x, 0f, direction2D.y);
