@@ -12,7 +12,19 @@ EditorBuildSettings:
     path: Assets/_ProjectFiles/Scenes/Lvl 1.unity
     guid: 08d8a0c7b1b151f488d98b83ab8329de
   - enabled: 1
+    path: Assets/_ProjectFiles/Scenes/Lvl 2.unity
+    guid: fdea0e07ddc753f4886bfb2041d12604
+  - enabled: 1
     path: Assets/_ProjectFiles/Scenes/Lvl 3.unity
+    guid: b60b9f3d76efcab44b2885fa8d02dd4c
+  - enabled: 1
+    path: Assets/_ProjectFiles/Scenes/Lvl 4.unity
+    guid: e179354c8adc8f34888cbb3dd3fadb1c
+  - enabled: 1
+    path: Assets/_ProjectFiles/Scenes/Lvl 5.unity
+    guid: 418b2e4b8f0c2c44da9050685911fb19
+  - enabled: 1
+    path: Assets/_ProjectFiles/Scenes/Lvl 6 (Test).unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000,

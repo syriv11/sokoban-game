@@ -26,7 +26,6 @@ namespace Sokoban
             Vector3 checkerPosition = _gizmoPosition = transform.position + _checkerOffset + moveDirection3D;
 
             return Physics.OverlapSphere(checkerPosition, _radius, _layerMask.value);
-            //return Physics.OverlapSphere(transform.position + moveDirection3D, _radius, CRATE_LAYER_MASK | WALL_LAYER_MASK);
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -36,7 +35,7 @@ namespace Sokoban
 
         private void OnDrawGizmos()
         {
-            if (!_isGizmoEnabled)
+            if (!_isGizmoEnabled)   
                 return;
 
             Gizmos.color = Color.red;

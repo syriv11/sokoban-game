@@ -481,6 +481,8 @@ MonoBehaviour:
   - Lvl 1
   - Lvl 2
   - Lvl 3
+  - Lvl 4
+  - Lvl 5
   _transition: {fileID: 7279220387597068086}
   _transitionTime: 0.5
 --- !u!1 &5834509855694316863
